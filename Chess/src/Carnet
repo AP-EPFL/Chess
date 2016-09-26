@@ -1,0 +1,57 @@
+Lignes auxquelles des valeurs d'évaluations constantes et importantes sont données:
+
+matériel:
+valeur pion: 63,67
+valeur cava: 71,74
+valeur fou : 77,80
+valeur tour: 83,86
+valeur dame: 89,92
+
+activité:
+valeur_casesBlanc:5-12
+valeur_casesNoir: 14-21
+valeur attribuées aux pièces si elles contrôlent certaines cases sensibles (type de case visible sur place): 386-393, 408-415, 438-445, 462-469 
+coefficient ajouté à l'activité calculée: 482
+
+position du roi:
+SafetyTableW: 24-31
+SafetyTableB: 36-43
+valeur d'avancée des pions sur le roi adverse: 136, 161, 188-190, 194-196, 257, 286, 314-316, 320-322
+valeur de protection des pions pour roi allié: 183, 163, 201-202, 206-207, 259, 288, 327-328, 332-333
+valeur d'activité des pièces contre le roi: 395-402, 417-426, 447-456, 471-478
+calcul du coeff de la pos. roi en fonction du matériel: 488 
+valeurs de pos. roi limites (évite bonus si roi surprotégé): 489-490
+
+
+structure de pion:
+valeur pion isolé ou isolé sur colonne ouverte: 237,362
+valeur pion arriéré ou arriéré sur colonne ouverte: 238, 363
+valeur pion passé en fonction de son avancement:239,364
+valeur pion protégé et bonus si passé: 365
+
+
+
+autre:
+ligne de décision si évaluation en finale ou en milieu de jeu: 105
+
+
+
+
+IMPORTANT: une bonne idée serait de compter le nombre de contrôle d'une case, et de définir l'ajout en fonction de la différence de contrôle.
+		   Ceci est primordial en finale, entre autre, pour tester le danger des pions passés
+		   
+		   
+		  Pour la table de hachage: faut-il prendre string ou int? Int serait 2* plus grand car il faudrait mettre un 0/1 devant chaque pièce pour sa couleur, contrairement au système R/r
+		  
+		 Une idée qui m'a traversé l'esprit, serait de faire une table de transposition qui peut stocker des évaluations avec une certaine profondeur. Cette idée est mauvaise car si on a une évaluation avec profondeur,
+		 alors on a toutes les évaluations de positions nécessaires à retrouver cette évaluation, et comme le parcours de l'arbre est très rapide par rapport à l'évaluation, autant recalculer le noeud.
+		 
+		 
+		 
+ESSAI: on va créer une fonction qui va lister les positions filles avec les coups légaux, plutôt que de le faire automatiquement. Mais je pense que c'est une mauvaise idée, car l'instanciation d'une position fille
+pourrait avoir un temps infini.
+
+
+
+
+A FAIRE DEMAIN PREMIERE HEURE: une nouvelle table de transpo pour les positions dont on connait la valeur max, ou min.
